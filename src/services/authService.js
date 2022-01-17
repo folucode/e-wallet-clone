@@ -1,6 +1,5 @@
 const db = require('../models');
 const User = db.user;
-const Op = db.sequelize.Op;
 
 const { hashPassword, generateFreshUserTokens, comparePassword } = require('../helpers/auth');
 
@@ -31,7 +30,7 @@ module.exports = {
     login: async (body) => {
         const { email, password } = body;
 
-        const user = await User.findAll({
+        const user = await User.findOne({
             where: { email },
         });
 

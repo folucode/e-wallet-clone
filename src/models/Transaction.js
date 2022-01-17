@@ -1,19 +1,19 @@
 module.exports = (sequelize, Sequelize) => {
-    const Wallet = sequelize.define('wallet', {
-        user_id: {
-            type: Sequelize.INTEGER,
+    const Transaction = sequelize.define('transaction', {
+        full_name: {
+            type: Sequelize.STRING,
             allowNull: false,
         },
-        address: {
+        email: {
             type: Sequelize.STRING,
             allowNull: false,
             unique: true,
         },
-        currency: {
+        password: {
             type: Sequelize.STRING,
             allowNull: false,
         },
     });
 
-    return Wallet;
+    return Transaction;
 };

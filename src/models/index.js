@@ -20,6 +20,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require('./User.js')(sequelize, Sequelize);
-// db.Wallet = require('./Wallet.js')(sequelize, Sequelize);
+db.wallet = require('./Wallet.js')(sequelize, Sequelize);
 
 module.exports = db;
