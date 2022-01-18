@@ -47,7 +47,7 @@ module.exports = {
             };
         }
 
-        const result = comparePassword(password, user[0].password);
+        const result = comparePassword(password, user.password);
         if (!result) {
             return {
                 status: 'failed',
@@ -56,9 +56,9 @@ module.exports = {
         }
 
         const payload = {
-            id: user[0].id,
-            username: user[0].full_name,
-            email: user[0].email,
+            id: user.id,
+            username: user.full_name,
+            email: user.email,
         };
 
         const accessToken = await generateFreshUserTokens(payload);
