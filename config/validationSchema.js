@@ -4,7 +4,7 @@ const schema = {
     register: Joi.object().keys({
         first_name: Joi.string().required().min(3).max(30),
         last_name: Joi.string().required().min(3).max(30),
-        phone: Joi.number().required().min(10).max(15),
+        phone: Joi.number().required(),
         password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{8,30}$')),
         repeat_password: Joi.ref('password'),
         email: Joi.string().email({
