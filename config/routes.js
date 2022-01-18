@@ -20,13 +20,15 @@ router.post('/auth/register', validation(schema.register), authController.regist
 router.post('/auth/login', validation(schema.login), authController.login);
 
 // Wallet
-router.post('/wallet', verifyUserToken, walletController.create);
-router.get('/wallet/balance', verifyUserToken, walletController.balance);
+router.post('/wallets', verifyUserToken, walletController.create);
+router.get('/wallets/balance', verifyUserToken, walletController.balance);
 
 // Transaction
-router.post('/transaction/credit', verifyUserToken, validation(schema.creditTransaction), transactionController.credit);
-router.post('/transaction/debit', verifyUserToken, validation(schema.debitTransaction), transactionController.debit);
-router.get('/transaction/inflow', verifyUserToken, transactionController.inflow);
-router.get('/transaction/expenses', verifyUserToken, transactionController.expenses);
+router.post('/transactions/credit', verifyUserToken, validation(schema.creditTransaction), transactionController.credit);
+router.post('/transactions/debit', verifyUserToken, validation(schema.debitTransaction), transactionController.debit);
+router.get('/transactions/inflow', verifyUserToken, transactionController.inflow);
+router.get('/transactions/expenses', verifyUserToken, transactionController.expenses);
+router.get('/transactions/top-merchants', verifyUserToken, transactionController.topMerchants);
+router.get('/transactions/top-categories', verifyUserToken, transactionController.topCategories);
 
 module.exports = router;

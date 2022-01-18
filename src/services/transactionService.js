@@ -206,4 +206,74 @@ module.exports = {
             status: 'success',
         };
     },
+
+    topMerchants: async (userId) => {
+        const wallet = await Wallet.findOne({
+            where: {
+                user_id: userId,
+            },
+        });
+
+        if (wallet.length < 1) {
+            return {
+                status: 'failed',
+                message: "You don't have a wallet",
+            };
+        }
+
+        const top_merchants = await Transaction.findAll({
+            where: {
+                user_id: userId,
+                wallet_id: wallet.id,
+                type: 'DEBIT',
+                status: 'APPROVED',
+            },
+            attributes: [
+                'merchant',
+                [sequelize.fn('COUNT', 'merchant'), 'count'],
+                [sequelize.fn('sum', sequelize.col('amount')), 'total_amount'],
+            ],
+            group: ['merchant'],
+        });
+
+        return {
+            data: top_merchants,
+            status: 'success',
+        };
+    },
+
+    topCategories: async (userId) => {
+        const wallet = await Wallet.findOne({
+            where: {
+                user_id: userId,
+            },
+        });
+
+        if (wallet.length < 1) {
+            return {
+                status: 'failed',
+                message: "You don't have a wallet",
+            };
+        }
+
+        const top_merchants = await Transaction.findAll({
+            where: {
+                user_id: userId,
+                wallet_id: wallet.id,
+                type: 'DEBIT',
+                status: 'APPROVED',
+            },
+            attributes: [
+                'merchant',
+                [sequelize.fn('COUNT', 'tag'), 'count'],
+                [sequelize.fn('sum', sequelize.col('amount')), 'total_amount'],
+            ],
+            group: ['merchant'],
+        });
+
+        return {
+            data: top_merchants,
+            status: 'success',
+        };
+    },
 };

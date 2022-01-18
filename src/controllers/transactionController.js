@@ -62,4 +62,30 @@ module.exports = {
             return errorResponse(res, 500, `Something went wrong ${error.message}`)
         }
     },
+
+    topMerchants: async (req, res) => {
+        try {
+            const userId = req.user.id;
+            
+            const { status, message, data } = await transactionService.topMerchants(userId);
+            if (status === 'failed') return errorResponse(res, 400, message);
+
+            return successResponse(res, 201, data, message);
+        } catch (error) {
+            return errorResponse(res, 500, `Something went wrong ${error.message}`)
+        }
+    },
+
+    topCategories: async (req, res) => {
+        try {
+            const userId = req.user.id;
+            
+            const { status, message, data } = await transactionService.topCategories(userId);
+            if (status === 'failed') return errorResponse(res, 400, message);
+
+            return successResponse(res, 201, data, message);
+        } catch (error) {
+            return errorResponse(res, 500, `Something went wrong ${error.message}`)
+        }
+    },
 };
