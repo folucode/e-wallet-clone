@@ -1,5 +1,6 @@
 const express = require('express');
 const authController = require('../src/controllers/authController');
+const transactionController = require('../src/controllers/transactionController');
 const walletController = require('../src/controllers/walletController');
 const validation = require('../src/middlewares/validation');
 const verifyUserToken = require('../src/middlewares/verifyUserToken');
@@ -20,5 +21,9 @@ router.post('/auth/login', validation(schema.login), authController.login);
 
 // Wallet
 router.post('/wallet', verifyUserToken, walletController.create);
+
+// Transaction
+router.post('/transaction/credit', verifyUserToken, validation(schema.creditTransaction), transactionController.credit);
+router.post('/transaction/debit', verifyUserToken, validation(schema.debitTransaction), transactionController.debit);
 
 module.exports = router;

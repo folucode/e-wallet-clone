@@ -19,7 +19,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.user = require('./User.js')(sequelize, Sequelize);
-db.wallet = require('./Wallet.js')(sequelize, Sequelize);
+db.user = require('./User')(sequelize, Sequelize);
+db.wallet = require('./Wallet')(sequelize, Sequelize);
+db.transaction = require('./Transaction')(sequelize, Sequelize);
 
 module.exports = db;

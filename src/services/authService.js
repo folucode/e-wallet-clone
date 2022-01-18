@@ -1,14 +1,20 @@
 const db = require('../models');
 const User = db.user;
 
-const { hashPassword, generateFreshUserTokens, comparePassword } = require('../helpers/auth');
+const {
+    hashPassword,
+    generateFreshUserTokens,
+    comparePassword,
+} = require('../helpers/auth');
 
 module.exports = {
     register: async (body) => {
-        const { full_name, email, password } = body;
+        const { first_name, last_name, phone, email, password } = body;
 
         const user = await User.create({
-            full_name,
+            first_name,
+            last_name,
+            phone,
             email: email.toLowerCase(),
             password: hashPassword(password),
         });
