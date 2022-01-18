@@ -21,6 +21,7 @@ router.post('/auth/login', validation(schema.login), authController.login);
 
 // Wallet
 router.post('/wallet', verifyUserToken, walletController.create);
+router.get('/wallet/balance', verifyUserToken, walletController.balance);
 
 // Transaction
 router.post('/transaction/credit', verifyUserToken, validation(schema.creditTransaction), transactionController.credit);

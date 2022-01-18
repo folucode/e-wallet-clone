@@ -18,4 +18,21 @@ module.exports = {
             );
         }
     },
+
+    balance: async (req, res) => {
+        try {
+            const userId = req.user.id;
+            const { message, status, data } = await walletService.balance(userId);
+            if(status === 'failed')
+                return errorResponse(res, 500, message);
+
+            return successResponse(res, 200, data, 'Wallet balance successfully fetched');
+        } catch (error) {
+            return errorResponse(
+                res,
+                500,
+                'Something went wrong, ' + error.message
+            );
+        }
+    },
 };
