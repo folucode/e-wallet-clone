@@ -264,7 +264,7 @@ module.exports = {
                 status: 'APPROVED',
             },
             attributes: [
-                'merchant',
+                'tag',
                 [sequelize.fn('COUNT', 'tag'), 'count'],
                 [sequelize.fn('sum', sequelize.col('amount')), 'total_amount'],
             ],
