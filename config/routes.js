@@ -26,5 +26,7 @@ router.get('/wallet/balance', verifyUserToken, walletController.balance);
 // Transaction
 router.post('/transaction/credit', verifyUserToken, validation(schema.creditTransaction), transactionController.credit);
 router.post('/transaction/debit', verifyUserToken, validation(schema.debitTransaction), transactionController.debit);
+router.get('/transaction/inflow', verifyUserToken, transactionController.inflow);
+router.get('/transaction/expenses', verifyUserToken, transactionController.expenses);
 
 module.exports = router;

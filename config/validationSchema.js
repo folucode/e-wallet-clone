@@ -30,6 +30,7 @@ const schema = {
         amount: Joi.number().required(),
         tag: Joi.string().required(),
         reason: Joi.string().required(),
+        merchant: Joi.string().required(),
     }),
 };
 
